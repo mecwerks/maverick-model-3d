@@ -16,7 +16,7 @@ If you are lucky you can install this program with these easy steps:
    su [become root]
    make install
 
-(NOTE: If you are on MacOS 64-bit, you will have to add ARCH=x86_64 to the forst make command)
+(NOTE: If you are on MacOS 64-bit, you will have to add ARCH=x86_64 to the first make command)
 
 Depending on your system configuration, you may have to run "sudo bash"
 instead of "su" to get a root shell.  This will build an 'mm3d' executable
