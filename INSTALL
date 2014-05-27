@@ -1,0 +1,58 @@
+Maverick Model 3D Installation
+============================
+
+If you are running on Windows see INSTALL.WIN32.  If you are running
+on a Unix-like system, installation instructions follow.
+
+Maverick Model 3D requires the following packages for proper operation.
+They are most likely already installed if you have a modern working
+Linux system.
+
+   Qt (3.x or 4.x) with OpenGL support
+      http://www.trolltech.com
+   OpenGL with GLU (probably Mesa if you are using Linux)
+      http://www.mesa3d.org/
+
+For Qt 3.x support, see notes on QTDIR below.
+
+Even if you have these packages installed you may need to install
+development packages as well.  These include header files which are
+needed to compile Maverick Model 3D.  Often such packages are marked
+as -dev or -devel by your distribution.  For example, sometimes
+Qt is broken up into a qt rpm and qt-devel rpm.  In this case, you
+must have both installed.
+
+If you are lucky you can install this program by running these commands at a
+shell prompt (terminal window):
+
+   make
+   su [become root]
+   make install
+
+On some system configurations you may need to run "sudo bash" instead of
+"su" to get a root shell.
+
+The default PREFIX (install location) is /usr/local.  Files are
+installed in the following directories.
+
+   PREFIX/bin                            - mm3d executable
+   PREFIX/share/maverickmodel3d/plugins  - plugins
+   PREFIX/share/doc/maverickmodel3d      - program documentation
+
+You can give make arguments to change how the program is 
+compiled.  For example you can change the default install location 
+by specifying PREFIX=PATH, where PATH is the new install location.
+
+If Qt is not detected and you have it installed, try using QTDIR=PATH
+to specify the directory where Qt is installed.  In a default Qt 
+installation this is what your QTDIR environment variable is set to.
+Include files are in $QTDIR/include and library files are in $QTDIR/lib.
+
+Currently on Unix-like systems you must explicitly use QTDIR=PATH
+to specify the location of Qt 3.x (ie, Qt 3.x will not be detected
+automatically).
+
+Sometimes development files are in separate paths completely, such as
+libs in /usr/lib/qt3 and headers in /usr/include/qt3.  In this case 
+use QT_INCLUDE_DIR=/usr/include/qt3 and QT_LIB_DIR=/usr/lib/qt3.
+
