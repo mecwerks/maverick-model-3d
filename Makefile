@@ -102,6 +102,53 @@ endif
 
 	BINEXT=.${ARCH}.exe
 else
+
+ifeq ($(PLATFORM),darwin) #MacOS X
+        B=${BUILD}/darwin-${ARCH}
+
+ifndef PREFIX
+        PREFIX=/usr/local
+endif
+
+ifndef QTDIR
+        QTDIR = /usr/local/Cellar/qt/4.8.5
+endif
+ifndef QT_INCLUDE_DIR
+        QT_INCLUDE_DIR=${QTDIR}/include
+endif
+ifndef QT_LIB_DIR
+        QT_LIB_DIR=${QTDIR}/lib
+endif
+ifndef QT_LIBS
+        QT_LIBS = -framework QtCore -framework QtGui -framework QtOpenGL -framework QtNetwork
+endif
+
+        CC=gcc
+        CXX=g++
+        DEL=rm -f
+        CP=cp
+        MKDIR=mkdir -p
+
+ifndef UIC
+        UIC=${QTDIR}/bin/uic
+endif
+ifndef MOC
+        MOC=${QTDIR}/bin/moc
+endif
+
+        LIB=lib
+
+	LINK=-L${QT_LIB_DIR} ${QT_LIBS} -framework OpenGl
+
+        ifeq ($(ARCH),i386)
+                BASE_FLAGS += -m32
+        endif
+
+        BASE_FLAGS += -DPREFIX="\"$(PREFIX)\"" -DMACOSX
+
+        BINEXT=.${ARCH}
+
+else # linux
 	B=${BUILD}/linux-${ARCH}
 
 ifndef PREFIX
@@ -170,7 +217,8 @@ endif
 	BASE_FLAGS += -DPREFIX="\"$(PREFIX)\""
 
 	BINEXT=.${ARCH}
-endif
+endif # Windows
+endif # MacOSX
 
 #CXXFLAGS=-Wall -g3
 CXXFLAGS=-O1 ${BASE_FLAGS} -I${QT_INCLUDE_DIR} -DMM3D_EDIT -DQT3_SUPPORT -I. -I./src -I./src/libmm3d -I./src/mm3dcore -I./src/depui -I./src/qtui -I./src/implui -I./src/commands -I./src/tools -I${B}/depui -I${B}/qtui -I${B}/implui -I${B}/commands

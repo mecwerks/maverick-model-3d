@@ -40,6 +40,10 @@
 #include <ctype.h>
 #include <errno.h>
 
+#ifdef MACOSX
+#include <unistd.h>
+#endif
+
 using std::string;
 
 void replaceSlash( char * str )
