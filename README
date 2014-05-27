@@ -4,7 +4,7 @@ Maverick Model 3D is a 3D model editor.  It was written and tested on Linux.
 It is reported to run on other Unix-like operating systems. It also runs
 on Windows. See INSTALL.WIN32 for Windows-specific instructions.
 
-The home page is here:
+The original home page is here:
    http://code.google.com/p/maverick-model-3d/
 
 Maverick Model 3D requires Qt (3.x or 4.x) with OpenGL support.  See the INSTALL
@@ -15,6 +15,8 @@ If you are lucky you can install this program with these easy steps:
    make
    su [become root]
    make install
+
+(NOTE: If you are on MacOS 64-bit, you will have to add ARCH=x86_64 to the forst make command)
 
 Depending on your system configuration, you may have to run "sudo bash"
 instead of "su" to get a root shell.  This will build an 'mm3d' executable
