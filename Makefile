@@ -111,7 +111,7 @@ ifndef PREFIX
 endif
 
 ifndef QTDIR
-        QTDIR = /usr/local/Cellar/qt/4.8.5
+        QTDIR = /usr/local/Cellar/qt/4.8.6
 endif
 ifndef QT_INCLUDE_DIR
         QT_INCLUDE_DIR=${QTDIR}/include
@@ -138,13 +138,13 @@ endif
 
         LIB=lib
 
-	LINK=-L${QT_LIB_DIR} ${QT_LIBS} -framework OpenGl
+	LINK=-F$(QTDIR)/Frameworks -L${QT_LIB_DIR} ${QT_LIBS} -framework OpenGl
 
         ifeq ($(ARCH),i386)
                 BASE_FLAGS += -m32
         endif
 
-        BASE_FLAGS += -DPREFIX="\"$(PREFIX)\"" -DMACOSX
+        BASE_FLAGS += -DPREFIX="\"$(PREFIX)\"" -DMACOSX -DIS_OSX
 
         BINEXT=.${ARCH}
 
